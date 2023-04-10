@@ -22,3 +22,6 @@ The proposed project is to develop an AI iPhone app that can accurately recogniz
 - CoreML
 - Database system
 - API
+
+### Group members:
+- Maxence Cabiddu
