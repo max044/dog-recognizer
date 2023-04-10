@@ -14,3 +14,11 @@ The proposed project is to develop an AI iPhone app that can accurately recogniz
 - Implement a feature that enables users to save identified dogs to a personal collection within the app, along with notes and photos
 - Include a feature to find nearby dog parks, veterinarians, and other dog-related businesses based on the recognized breed
 - Add a social aspect to the app, wherein users can share their identified dogs and collections with their friends and followers on social media platforms such as Instagram or Twitter.
+- Use location-based services to find nearby dog parks, veterinarians, and other dog-related businesses based on the recognized breed.
+
+### Technical scope:
+- SwiftUI
+- Pytorch
+- CoreML
+- Database system
+- API
