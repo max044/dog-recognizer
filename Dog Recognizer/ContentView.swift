@@ -24,7 +24,6 @@ struct ContentView: View {
                 .tabItem {
                     Label("Camera", systemImage: "camera")
                 }
-                .scaledToFit()
                 .border(Color.red)
             HistoricView()
                 .tag(ContentViewTab.historic)
