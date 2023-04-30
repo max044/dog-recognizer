@@ -1,6 +1,8 @@
 # dog-recognizer
 The proposed project is to develop an AI iPhone app that can accurately recognize different dog breeds from a photo.
 
+The dog breed neural network is available [here](https://github.com/max044/dog_breed_neural_network)
+
 ## Idea for swift project:
 
 ### Main features:
