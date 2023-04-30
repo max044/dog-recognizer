@@ -11,6 +11,8 @@
 		0E22D1C129DB9E28003DD9AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E22D1C029DB9E28003DD9AE /* ContentView.swift */; };
 		0E22D1C329DB9E2A003DD9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E22D1C229DB9E2A003DD9AE /* Assets.xcassets */; };
 		0E22D1C629DB9E2A003DD9AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E22D1C529DB9E2A003DD9AE /* Preview Assets.xcassets */; };
+		0EB63FE429FE1765001150D7 /* ImagePredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB63FE329FE1765001150D7 /* ImagePredictor.swift */; };
+		0EB63FEA29FE55FE001150D7 /* Dog_recognition_img.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */; };
 		0EC746BA29DBA66D0024F00B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746B929DBA66D0024F00B /* HomeView.swift */; };
 		0EC746BC29DBA6EF0024F00B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746BB29DBA6EF0024F00B /* CameraView.swift */; };
 		0EC746BE29DBA72A0024F00B /* HistoricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746BD29DBA72A0024F00B /* HistoricView.swift */; };
@@ -22,7 +24,9 @@
 		0E22D1C029DB9E28003DD9AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0E22D1C229DB9E2A003DD9AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E22D1C529DB9E2A003DD9AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dog-Recognizer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dog-Recognizer-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0EB63FE329FE1765001150D7 /* ImagePredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePredictor.swift; sourceTree = "<group>"; };
+		0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Dog_recognition_img.mlmodel; path = ../../../neural_network/Dog_recognition_img.mlmodel; sourceTree = "<group>"; };
 		0EC746B929DBA66D0024F00B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0EC746BB29DBA6EF0024F00B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		0EC746BD29DBA72A0024F00B /* HistoricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricView.swift; sourceTree = "<group>"; };
@@ -42,6 +46,7 @@
 		0E22D1B229DB9E28003DD9AE = {
 			isa = PBXGroup;
 			children = (
+				0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */,
 				0E22D1BD29DB9E28003DD9AE /* Dog Recognizer */,
 				0E22D1BC29DB9E28003DD9AE /* Products */,
 			);
@@ -58,7 +63,8 @@
 		0E22D1BD29DB9E28003DD9AE /* Dog Recognizer */ = {
 			isa = PBXGroup;
 			children = (
-				0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */,
+				0EB63FE229FE174D001150D7 /* Image predictor */,
+				0EB63FDB29FD906A001150D7 /* Resources */,
 				0EC746BD29DBA72A0024F00B /* HistoricView.swift */,
 				0EC746BB29DBA6EF0024F00B /* CameraView.swift */,
 				0EC746B929DBA66D0024F00B /* HomeView.swift */,
@@ -76,6 +82,22 @@
 				0E22D1C529DB9E2A003DD9AE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0EB63FDB29FD906A001150D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0EB63FE229FE174D001150D7 /* Image predictor */ = {
+			isa = PBXGroup;
+			children = (
+				0EB63FE329FE1765001150D7 /* ImagePredictor.swift */,
+			);
+			path = "Image predictor";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +175,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC746BE29DBA72A0024F00B /* HistoricView.swift in Sources */,
+				0EB63FEA29FE55FE001150D7 /* Dog_recognition_img.mlmodel in Sources */,
 				0EC746BA29DBA66D0024F00B /* HomeView.swift in Sources */,
 				0E22D1C129DB9E28003DD9AE /* ContentView.swift in Sources */,
+				0EB63FE429FE1765001150D7 /* ImagePredictor.swift in Sources */,
 				0E22D1BF29DB9E28003DD9AE /* Dog_RecognizerApp.swift in Sources */,
 				0EC746BC29DBA6EF0024F00B /* CameraView.swift in Sources */,
 			);

@@ -6,80 +6,138 @@
 //
 
 import SwiftUI
-
-//struct CameraView: View {
-//    @State private var showImagePicker = false
-//    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-//    @State private var capturedImage: UIImage?
-//
-//    var body: some View {
-//        VStack {
-//            Button(action: {
-//                sourceType = .camera
-//                showImagePicker = true
-//
-//            }) {
-//                Text("Take a picture")
-//            }
-//            Button(action: {
-//                sourceType = .photoLibrary
-//                showImagePicker = true
-//            }) {
-//                Text("Select a picture")
-//            }
-//            if let image = capturedImage {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .scaledToFit()
-//            }
-//        }
-//        .sheet(isPresented: $showImagePicker) {
-//            ImagePickerView(sourceType: $sourceType, image: self.$capturedImage)
-//        }
-//    }
-//}
+import CoreML
+import UIKit
+import Vision
 
 struct CameraView: View {
     @State private var showImagePicker = false
     @State private var capturedImage: UIImage?
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var predictionResult: String = ""
     
-        var body: some View {
-            ZStack {
-                VStack {
-                    if let image = capturedImage {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height * 0.8)
-                    } else {
-                        
-                    }
-                    HStack(spacing: 30) {
-                        Button(action: {
-                            self.showImagePicker = true
-                            self.sourceType = .camera
-                        }) {
-                            Image(systemName: "camera.fill")
-                                .font(.title)
-                        }
-                        Button(action: {
-                            self.showImagePicker = true
-                            self.sourceType = .photoLibrary
-                        }) {
-                            Image(systemName: "photo.fill")
-                                .font(.title)
-                        }
-                    }
-                    .padding(.vertical, 10)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            }
-            .sheet(isPresented: $showImagePicker) {
-                ImagePickerView(sourceType: self.$sourceType, image: self.$capturedImage)
-            }
+    func computePrediction(image: UIImage, completion: @escaping (String) -> Void) {
+        let imagePredictor = ImagePredictor()
+        
+        do {
+            try imagePredictor.makePredictions(for: image,
+                                               completionHandler: imagePredictionHandler)
+        } catch {
+            print("Vision was unable to make a prediction...\n\n\(error.localizedDescription)")
         }
     }
+    
+    private func imagePredictionHandler(_ predictions: [ImagePredictor.Prediction]?) {
+        guard let predictions = predictions else {
+            print("No predictions. (Check console log.)")
+            return
+        }
+
+        let formattedPredictions = formatPredictions(predictions)
+
+        let predictionString = formattedPredictions.joined(separator: "\n")
+        predictionResult = predictionString
+
+        print("predictionString: \(predictionString)")
+    }
+
+    private func formatPredictions(_ predictions: [ImagePredictor.Prediction]) -> [String] {
+        // Vision sorts the classifications in descending confidence order.
+        let predictionsToShow = 2
+        let topPredictions: [String] = predictions.prefix(predictionsToShow).map { prediction in
+            var name = prediction.classification
+
+            // For classifications with more than one name, keep the one before the first comma.
+            if let firstComma = name.firstIndex(of: ",") {
+                name = String(name.prefix(upTo: firstComma))
+            }
+
+            return "\(name) - \(prediction.confidencePercentage)%"
+        }
+
+        return topPredictions
+    }
+    
+    var body: some View {
+        ZStack {
+            VStack {
+                if let image = capturedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height * 0.8)
+                    
+                    // text to display the prediction result (breed)
+                    Text("Prediction result: \(predictionResult)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 10)
+                    
+
+                    HStack() {
+                        Button(action: {
+                            self.capturedImage = nil
+                            self.predictionResult = ""
+                        }) {
+                            Text("Delete")
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+
+                        // analyse picture
+                        Button(action: {
+                            computePrediction(image: image, completion: { result in
+                                 self.predictionResult = result
+                             })
+                        }) {
+                            Text("Analyse")
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+                    }.padding(.vertical, 10)
+                    
+                } else {
+                    Image(systemName: "camera")
+                        .font(.system(size: 100))
+                        .foregroundColor(.gray)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height * 0.8)
+                }
+                HStack() {
+                    Button(action: {
+                        self.showImagePicker = true
+                        self.sourceType = .camera
+                        self.capturedImage = nil
+                        self.predictionResult = ""
+                    }) {
+                        Image(systemName: "camera.fill")
+                            .font(.title)
+                    }
+                    Button(action: {
+                        self.showImagePicker = true
+                        self.sourceType = .photoLibrary
+                        self.capturedImage = nil
+                        self.predictionResult = ""
+                    }) {
+                        Image(systemName: "photo.fill")
+                            .font(.title)
+                    }
+                }
+                .padding(.vertical, 10)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(sourceType: self.$sourceType, image: self.$capturedImage)
+        }
+    }
+}
 
 struct ImagePickerView: UIViewControllerRepresentable {
     @Binding var sourceType: UIImagePickerController.SourceType
