@@ -11,11 +11,13 @@
 		0E22D1C129DB9E28003DD9AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E22D1C029DB9E28003DD9AE /* ContentView.swift */; };
 		0E22D1C329DB9E2A003DD9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E22D1C229DB9E2A003DD9AE /* Assets.xcassets */; };
 		0E22D1C629DB9E2A003DD9AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E22D1C529DB9E2A003DD9AE /* Preview Assets.xcassets */; };
+		0E6E65282A00AA7B00362266 /* Dog_recognition_img.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E65272A00AA7B00362266 /* Dog_recognition_img.mlmodel */; };
 		0EB63FE429FE1765001150D7 /* ImagePredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB63FE329FE1765001150D7 /* ImagePredictor.swift */; };
-		0EB63FEA29FE55FE001150D7 /* Dog_recognition_img.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */; };
 		0EC746BA29DBA66D0024F00B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746B929DBA66D0024F00B /* HomeView.swift */; };
 		0EC746BC29DBA6EF0024F00B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746BB29DBA6EF0024F00B /* CameraView.swift */; };
 		0EC746BE29DBA72A0024F00B /* HistoricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC746BD29DBA72A0024F00B /* HistoricView.swift */; };
+		0EEF73B22A0B375600CF750D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEF73B12A0B375600CF750D /* PersistenceController.swift */; };
+		0EEF73B52A0B3ABE00CF750D /* HistoricDBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EEF73B32A0B3ABE00CF750D /* HistoricDBModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +26,16 @@
 		0E22D1C029DB9E28003DD9AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0E22D1C229DB9E2A003DD9AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E22D1C529DB9E2A003DD9AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0E6E65272A00AA7B00362266 /* Dog_recognition_img.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Dog_recognition_img.mlmodel; sourceTree = "<group>"; };
 		0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dog-Recognizer-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0EB63FE329FE1765001150D7 /* ImagePredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePredictor.swift; sourceTree = "<group>"; };
-		0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Dog_recognition_img.mlmodel; path = ../../../neural_network/Dog_recognition_img.mlmodel; sourceTree = "<group>"; };
 		0EC746B929DBA66D0024F00B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0EC746BB29DBA6EF0024F00B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		0EC746BD29DBA72A0024F00B /* HistoricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricView.swift; sourceTree = "<group>"; };
+		0EEF73B12A0B375600CF750D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		0EEF73B42A0B3ABE00CF750D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0EEF73BE2A0B44FD00CF750D /* MyHistoricDB+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyHistoricDB+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0EEF73BF2A0B44FD00CF750D /* MyHistoricDB+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyHistoricDB+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,8 @@
 		0E22D1B229DB9E28003DD9AE = {
 			isa = PBXGroup;
 			children = (
+				0EEF73BE2A0B44FD00CF750D /* MyHistoricDB+CoreDataClass.swift */,
+				0EEF73BF2A0B44FD00CF750D /* MyHistoricDB+CoreDataProperties.swift */,
 				0EAF1B1D29E4C147006D9499 /* Dog-Recognizer-Info.plist */,
 				0E22D1BD29DB9E28003DD9AE /* Dog Recognizer */,
 				0E22D1BC29DB9E28003DD9AE /* Products */,
@@ -63,10 +71,12 @@
 		0E22D1BD29DB9E28003DD9AE /* Dog Recognizer */ = {
 			isa = PBXGroup;
 			children = (
+				0EEF73B02A0B373600CF750D /* DataBase */,
 				0EB63FE229FE174D001150D7 /* Image predictor */,
 				0EB63FDB29FD906A001150D7 /* Resources */,
 				0EC746BD29DBA72A0024F00B /* HistoricView.swift */,
 				0EC746BB29DBA6EF0024F00B /* CameraView.swift */,
+				0EEF73B32A0B3ABE00CF750D /* HistoricDBModel.xcdatamodeld */,
 				0EC746B929DBA66D0024F00B /* HomeView.swift */,
 				0E22D1BE29DB9E28003DD9AE /* Dog_RecognizerApp.swift */,
 				0E22D1C029DB9E28003DD9AE /* ContentView.swift */,
@@ -87,7 +97,7 @@
 		0EB63FDB29FD906A001150D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0EB63FE929FE55FE001150D7 /* Dog_recognition_img.mlmodel */,
+				0E6E65272A00AA7B00362266 /* Dog_recognition_img.mlmodel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -98,6 +108,14 @@
 				0EB63FE329FE1765001150D7 /* ImagePredictor.swift */,
 			);
 			path = "Image predictor";
+			sourceTree = "<group>";
+		};
+		0EEF73B02A0B373600CF750D /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				0EEF73B12A0B375600CF750D /* PersistenceController.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,12 +193,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC746BE29DBA72A0024F00B /* HistoricView.swift in Sources */,
-				0EB63FEA29FE55FE001150D7 /* Dog_recognition_img.mlmodel in Sources */,
+				0E6E65282A00AA7B00362266 /* Dog_recognition_img.mlmodel in Sources */,
 				0EC746BA29DBA66D0024F00B /* HomeView.swift in Sources */,
 				0E22D1C129DB9E28003DD9AE /* ContentView.swift in Sources */,
 				0EB63FE429FE1765001150D7 /* ImagePredictor.swift in Sources */,
+				0EEF73B52A0B3ABE00CF750D /* HistoricDBModel.xcdatamodeld in Sources */,
 				0E22D1BF29DB9E28003DD9AE /* Dog_RecognizerApp.swift in Sources */,
 				0EC746BC29DBA6EF0024F00B /* CameraView.swift in Sources */,
+				0EEF73B22A0B375600CF750D /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +333,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dog-Recognizer-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) Need Camera Access to Scan Dogs";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) Need Camera Access to Scan Dogs";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Dog Recognizer Need Camera Access to Scan Dogs";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Dog Recognizer Need Camera Access to Scan Dogs";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -346,8 +366,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dog-Recognizer-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) Need Camera Access to Scan Dogs";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) Need Camera Access to Scan Dogs";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Dog Recognizer Need Camera Access to Scan Dogs";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Dog Recognizer Need Camera Access to Scan Dogs";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -389,6 +409,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0EEF73B32A0B3ABE00CF750D /* HistoricDBModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0EEF73B42A0B3ABE00CF750D /* Model.xcdatamodel */,
+			);
+			currentVersion = 0EEF73B42A0B3ABE00CF750D /* Model.xcdatamodel */;
+			name = HistoricDBModel.xcdatamodeld;
+			path = DataBase/HistoricDBModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0E22D1B329DB9E28003DD9AE /* Project object */;
 }

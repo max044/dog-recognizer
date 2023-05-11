@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 // create a bottom bar navigation view with home, camera and historic buttons
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @StateObject var appState = AppState()
     
     var body: some View {
-        TabView(selection: $appState.selectedTab) {
+            TabView(selection: $appState.selectedTab) {
             HomeView()
                 .tag(ContentViewTab.home)
                 .tabItem {
@@ -30,34 +32,35 @@ struct ContentView: View {
                 .tabItem {
                     Label("Historic", systemImage: "clock")
                 }
-        }.environmentObject(appState)
+        }
+//        .environmentObject(appState)
     }
 }
 
 class AppState: ObservableObject {
     @Published var selectedTab: ContentViewTab = .camera
-    @Published var homeNavigation: [HomeNavDestination] = []
-    @Published var cameraNavigation: [CameraNavDestination] = []
-    @Published var historicNavigation: [HistoricNavDestination] = []
+//    @Published var homeNavigation: [HomeNavDestination] = []
+//    @Published var cameraNavigation: [CameraNavDestination] = []
+//    @Published var historicNavigation: [HistoricNavDestination] = []
 }
-
+//
 enum ContentViewTab {
     case home
     case camera
     case historic
 }
-
-enum HomeNavDestination {
-
-}
-
-enum CameraNavDestination {
-    case Camera
-}
-
-enum HistoricNavDestination {
-
-}
+//
+//enum HomeNavDestination {
+//
+//}
+//
+//enum CameraNavDestination {
+//    case Camera
+//}
+//
+//enum HistoricNavDestination {
+//
+//}
 
 
 struct ContentView_Previews: PreviewProvider {

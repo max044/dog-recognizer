@@ -131,38 +131,28 @@ class ImagePredictor {
 
         // Cast the request's results as an `VNClassificationObservation` array.
         guard let observations = request.results as? [VNClassificationObservation] else {
-            // Image classifiers, like MobileNet, only produce classification observations.
-            // However, other Core ML model types can produce other observations.
-            // For example, a style transfer model produces `VNPixelBufferObservation` instances.
             print("VNRequest produced the wrong result type: \(type(of: request.results)).")
             return
         }
+        
+        let pred_logits = observations.map { $0.confidence }
+        let pred_softmax = softmax(pred_logits)
 
-        // Create a prediction array from the observations.
-        predictions = observations.map { observation in
-            // Convert each observation into an `ImagePredictor.Prediction` instance.
-            Prediction(classification: observation.identifier,
-                       confidencePercentage: observation.confidencePercentageString)
+        // Get the top 2 predictions
+        let top2 = pred_softmax.indices.sorted(by: { pred_softmax[$0] > pred_softmax[$1] })[0..<2]
+        let top2_percentage = top2.map { pred_softmax[$0] }
+        let classes_pred = top2.map { observations[$0].identifier }
+        
+        predictions = classes_pred.enumerated().map { i, classLabel in
+            let confidencePercentage = String(format: "%.2f", top2_percentage[i] * 100.0)
+            return Prediction(classification: classLabel, confidencePercentage: confidencePercentage)
         }
     }
 }
 
-extension VNClassificationObservation {
-    /// Generates a string of the observation's confidence as a percentage.
-    var confidencePercentageString: String {
-        let percentage = confidence * 100
-
-        switch percentage {
-            case 100.0...:
-                return "100%"
-            case 10.0..<100.0:
-                return String(format: "%2.1f", percentage)
-            case 1.0..<10.0:
-                return String(format: "%2.1f", percentage)
-            case ..<1.0:
-                return String(format: "%1.2f", percentage)
-            default:
-                return String(format: "%2.1f", percentage)
-        }
-    }
+func softmax(_ x: [Float]) -> [Float] {
+    let max_x = x.max()!
+    let exp_x = x.map { exp($0 - max_x) }
+    let sum_exp_x = exp_x.reduce(0, +)
+    return exp_x.map { $0 / sum_exp_x }
 }
