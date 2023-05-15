@@ -3,6 +3,9 @@ The proposed project is to develop an AI iPhone app that can accurately recogniz
 
 The dog breed neural network is available [here](https://github.com/max044/dog_breed_neural_network)
 
+## Presentation
+<img width="300" src="DogBreed.gif" alt="Project video" />
+
 ## Idea for swift project:
 
 ### Main features:
