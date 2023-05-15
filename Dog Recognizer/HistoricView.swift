@@ -27,15 +27,16 @@ struct HistoricView: View {
                                 Text(date, style: .date)
                                     .font(.body)
                             }
-                            if let img = historicPrediction.picture {
-                                Image(uiImage: UIImage(data: img)!)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        Spacer()
+                            HStack {
+                                if let img = historicPrediction.picture {
+                                    Image(uiImage: UIImage(data: img)!)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                }
+
+                                Spacer()
                     
                         if let pred = historicPrediction.predictions {
                             Text(pred)
@@ -70,8 +71,21 @@ struct HistoricView: View {
                                  }
                              )
                          }
-                        
-                        
+
+                        //  Add a button to delete the historic prediction
+                        Button(action: {
+                            viewContext.delete(historicPrediction)
+                            do {
+                                try viewContext.save()
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }, label: {
+                            Label("", systemImage: "trash")
+                        })
+
+                            }
+                        }
                     }
                 }
             }

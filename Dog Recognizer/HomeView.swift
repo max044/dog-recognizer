@@ -9,7 +9,25 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Home view")
+        VStack {
+            Text("Welcome to Dog Recognizer!")
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+            Text("Take a picture of a dog and we'll tell you its breed.")
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .padding()
+            Image("Logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .cornerRadius(10)
+                .padding()
+        }
+
+
     }
 }
 

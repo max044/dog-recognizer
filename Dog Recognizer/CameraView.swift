@@ -12,54 +12,6 @@ import Vision
 import CoreImage
 import CoreData
 
-
-// Image Transformations
-
-func ImageTransform(inputImage: UIImage) -> UIImage {
-
-    // Create a CIImage from the input image
-    guard let ciImage = CIImage(image: inputImage) else {
-        fatalError("Unable to create CIImage from input image")
-    }
-
-    // Create the filter
-    let mean = CIVector(x: 0.485, y: 0.456, z: 0.406)
-    let std = CIVector(x: 0.229, y: 0.224, z: 0.225)
-    let filter = CIFilter(name: "CIColorMatrix", parameters: [
-        kCIInputImageKey: ciImage,
-        "inputRVector": std,
-        "inputGVector": std,
-        "inputBVector": std,
-        "inputBiasVector": mean
-    ])!
-
-    // Apply the filter
-    let context = CIContext()
-    guard let outputImage = filter.outputImage else {
-        fatalError("Unable to apply filter to input image")
-    }
-    guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else {
-        fatalError("Unable to create CGImage from output image")
-    }
-    let outputUIImage = UIImage(cgImage: cgImage)
-
-    // Convert the output image to a UIImage
-    return outputUIImage
-}
-
-func resize(image: UIImage, size: CGSize) -> UIImage {
-    let scale = UIScreen.main.scale
-    let resizedSize = CGSize(width: size.width * scale, height: size.height * scale)
-    let format = UIGraphicsImageRendererFormat.default()
-    format.scale = scale
-    let renderer = UIGraphicsImageRenderer(size: resizedSize, format: format)
-    let resizedImage = renderer.image { _ in
-        image.draw(in: CGRect(origin: .zero, size: resizedSize))
-    }
-    return resizedImage
-}
-
-
 struct CameraView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var showImagePicker = false

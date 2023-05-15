@@ -20,48 +20,29 @@ struct ContentView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-                .border(Color.red)
             CameraView()
                 .tag(ContentViewTab.camera)
                 .tabItem {
                     Label("Camera", systemImage: "camera")
                 }
-                .border(Color.red)
             HistoricView()
                 .tag(ContentViewTab.historic)
                 .tabItem {
                     Label("Historic", systemImage: "clock")
                 }
         }
-//        .environmentObject(appState)
     }
 }
 
 class AppState: ObservableObject {
     @Published var selectedTab: ContentViewTab = .camera
-//    @Published var homeNavigation: [HomeNavDestination] = []
-//    @Published var cameraNavigation: [CameraNavDestination] = []
-//    @Published var historicNavigation: [HistoricNavDestination] = []
 }
-//
+
 enum ContentViewTab {
     case home
     case camera
     case historic
 }
-//
-//enum HomeNavDestination {
-//
-//}
-//
-//enum CameraNavDestination {
-//    case Camera
-//}
-//
-//enum HistoricNavDestination {
-//
-//}
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
